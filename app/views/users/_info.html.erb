@@ -17,14 +17,14 @@
   </tr>
 </table>
 
-<% if current_user == user %>
-<div class='row'>
-  <%= link_to '',edit_user_path(user.id),class: "btn btn-outline-secondary btn-block fas fa-user-cog edit_user_#{user.id}" %>
-</div>
-<% else %>
-　<% if current_user.following?(user) %>
-    <%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST, class: "btn btn-sm btn-success" %>
+  <% if current_user == user %>
+  <div class='row'>
+    <%= link_to '',edit_user_path(user.id),class: "btn btn-outline-secondary btn-block fas fa-user-cog edit_user_#{user.id}" %>
+  </div>
   <% else %>
-    <%= link_to 'フォローする', follow_path(user.id), method: :POST, class: "btn btn-sm btn-success" %>
+　  <% if current_user.following?(user) %>
+      <%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST, class: "btn btn-sm btn-success" %>
+    <% else %>
+      <%= link_to 'フォローする', follow_path(user.id), method: :POST, class: "btn btn-sm btn-success" %>
+    <% end %>
   <% end %>
-<% end %>
